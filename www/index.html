@@ -14,11 +14,7 @@
         let ncmb = new NCMB(appKey, clientKey);
         // 利用するデータベースを指定（存在しなければ生成）
         let TestClass = ncmb.DataStore("FetchTest");
-        $(function(){
-            $("btnA")).click(function(e){
-                btnAclick(e);
-            })
-        })
+        
         function register() {
             // 登録するレコードを用意
             let testRecord = new TestClass();
@@ -35,6 +31,16 @@
                     $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
                 })
         }
+        function fetch(){
+            let TestClass= ncmb.DataStore("FetchTest"); 
+            TestClass.fetch()
+            .then(function(results){ 
+                var data=results.get("text");
+                var update=results.get("updateDate");
+                $("#message").html(data+":"+update);
+            })
+        }
+
     </script>
 </head>
 
@@ -46,7 +52,8 @@
     </div>
     <div id="button">
         <button id="btnA" class="btn" onclick="register()">Register</button>
-        <button id="btnB" class="btn" >Fetch</button>
+        <button id="btnB" class="btn" onclick="fetch()">Fetch</button>
+        
     </div>
     <div id="message">message area</div>
 </body>
