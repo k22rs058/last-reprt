@@ -14,7 +14,6 @@
         let TestClass = ncmb.DataStore("RegisterTest2021");
         // コールバックの登録など
         $(function() {
-            $("#message").html("initialized");
             $("#btnA").click(function(e) {
                 btnAClick(e);
             })
@@ -23,12 +22,8 @@
             // 登録するレコードを用意
             let newRecord = new TestClass();
             let key = $("#field").val();
-            let value = $("#value").val();
-            // レコードのフィールドと値を設定
-            newRecord.set(key, value);
-            // レコードをデータベースに登録
-            newRecord.save();
-            $("#message").html("btnA clicked !");
+            var j=Y+M
+            $("#message").html(j);
         }
     </script>
 </head>
@@ -36,14 +31,16 @@
     <h1>what day of the week is that day?</h1>
 	<div>
         <label for ="field">Years:</label>
-        <input id="field" type="text" value="A.D.">
+        <input id="Y" type="number" value="A.D.">
         <label for ="field">Month:</label>
-        <input id="field" type="text" value="">
+        <input id="M" type="number" value="">
         <label for ="field">day:</label>
-        <input id="field" type="text" value="">
+        <input id="D" type="text" value="">
     </div>
     <div id="button">
         <button id ="btnA" class="btn" onclick="Start()">Start</button>
     </div>
+    <div id="message">That day is</div>
+
 </body>
 </html>
