@@ -14,29 +14,60 @@
         let TestClass = ncmb.DataStore("RegisterTest2021");
         // コールバックの登録など
         $(function() {
+            $("#btnN").click(function(e) {
+                btnNClick(e);
+            })
+        });
+        $(function() {
             $("#btnA").click(function(e) {
                 btnAClick(e);
+            })
+        });
+        $(function() {
+            $("#btnB").click(function(e) {
+                btnBClick(e);
+            })
+        });
+        $(function() {
+            $("#btnC").click(function(e) {
+                btnCClick(e);
+            })
+        });
+        $(function() {
+            $("#btnD").click(function(e) {
+                btnDClick(e);
+            })
+        });
+        $(function() {
+            $("#btnE").click(function(e) {
+                btnEClick(e);
+            })
+        });
+        $(function() {
+            $("#btnF").click(function(e) {
+                btnFClick(e);
             })
         });
         function btnAClick(e) {
             // 登録するレコードを用意
             let newRecord = new TestClass();
             let key = $("#field").val();
-            var j=Y+M
-            $("#message").html(j);
+            
         }
     </script>
 </head>
 <body>
-    <h1>Enter your <br> favorite number <br> No.1 to No.152</h1>
-	<div>
-        <label for ="field">Nonber:</label>
-        <input id="Y" type="number" value="suuji">
-    </div>
+    <h1>In what order <br> Poke'mon <br> No.1 to No.151</h1>
     <div id="button">
-        <button id ="btnA" class="btn" onclick="Start()">Start</button>
+        <button id ="btnA" class="btn" >Attack</button>
+        <button id ="btnB" class="btn" >SDefence</button>
+        <button id ="btnF" class="btn" >Hit point</button>
+        <button id ="btnD" class="btn" >SAttack</button>
+        <button id ="btnC" class="btn" >Defence</button>
+        <button id ="btnE" class="btn" >Speed</button>
+        <button id ="btnN" class="btn" >Number</button>
     </div>
-    <div id="message">That pokemon is‥‥‥</div>
+    <div id="message">That poke'mon is‥‥‥</div>
 
 </body>
 </html>
