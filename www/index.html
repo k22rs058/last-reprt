@@ -23,10 +23,11 @@
         }
         function showResults(results) {
             // テーブルのヘッダを生成
-            let msg = "<table><tr><th>Poke'mon</th><th>HP</th><th>Attack</th><th>Defence</th><th>SDefence</th><th>SAttack</th><th>Speed</th></tr>";
+            let msg = "<table><tr><th>Poke'mon</th><th>No.</th><th>HP</th><th>Attack</th><th>Defence</th><th>SDefence</th><th>SAttack</th><th>Speed</th></tr>";
             for (let i = 0; i < results.length; i++) {
                 msg += "<tr>";
                 msg += "<td>" + results[i].Name + "</td>";
+                msg += "<td class='num'>" + results[i].no + "</td>";
                 msg += "<td class='num'>" + results[i].HP + "</td>";
                 msg += "<td class='num'>" + results[i].Attack + "</td>";
                 msg += "<td class='num'>" + results[i].Defence + "</td>";
@@ -39,19 +40,51 @@
                 msg += "</table>";
                 $("#message").html(msg);
         }
+        function Number(){
+            let Number=parseInt($("#Number").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.order("no", false).fetchAll()
+             .then(function(results){
+                 showResults(results);
+              })
+        }
+        function btnA(){
+            let Attack=parseInt($("#Attack").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.order("Attack", true).fetchAll()
+             .then(function(results){
+                 showResults(results);
+              })
+        }
+        function btnB(){
+            let Attack=parseInt($("#SDefence").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.order("SDefence", true).fetchAll()
+             .then(function(results){
+                 showResults(results);
+              })
+        }
+        function btnC(){
+            let Attack=parseInt($("#Defence").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.order("Defence", true).fetchAll()
+             .then(function(results){
+                 showResults(results);
+              })
+        }
 
     </script>
 </head>
 <body>
-    <h1>In what order <br> Poke'mon <br> No.1 to No.151</h1>
+    <h1>In what order <br> Poke'mon <br> No.1 to No.9</h1>
     <div id="button">
-        <button onclick ="btnA" class="btn" >Attack</button>
-        <button onclick ="btnB" class="btn" >SDefence</button>
+        <button class="btn" onclick ="btnA()" >Attack</button>
+        <button onclick ="btnB()" class="btn" >SDefence</button>
         <button onclick ="btnF" class="btn" >Hit point</button>
         <button onclick ="btnD" class="btn" >SAttack</button>
-        <button onclick ="btnC" class="btn" >Defence</button>
+        <button onclick ="btnC()" class="btn" >Defence</button>
         <button onclick ="btnE" class="btn" >Speed</button>
-        <button onclick ="btnn" class="btn" >Name</button>
+        <button class="btn" onclick ="Number()">Number</button>
         <button class="btn" onclick ="fetchAll()">FetchAll</button>
     </div>
     <div id="message">That poke'mon is‥‥‥</div>
