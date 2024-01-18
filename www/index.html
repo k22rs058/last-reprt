@@ -13,35 +13,48 @@
         // 利用するデータベースを指定（存在しなければ生成）
         let TestClass = ncmb.DataStore("RegisterTest2021");
         // コールバックの登録など
-        function btnQ() {
+        function fetchall() {
             // 登録するレコードを用意
             let TestDataclass = ncmb.DataStore(db);
-            TestDataclass.order("name",false).btnQ()
+            TestDataclass.order("name",false).fetchall()
             .then(function(results){
                 showResults(results);
             })
             
         }
         function showResults(results) {
-      // テーブルのヘッダを生成
-      let msg = "<table><tr><th>Number</th><th>name</th><th>Attack</th><th>SDfence</th><th>Hit Point</th><th>SAtaack</th><th>Defence</th><th>Speed</th></tr>";
-      for (let i = 0; i < results.length; i++) {
-        // 各データを収めた表の列を生成
-        msg += "<tr>";
-        msg += "<td>" + results[i].name + "</td>";
-        msg += "<td class='num'>" + results[i].Attack + "</td>";
-        msg += "<td class='num'>" + results[i].SDefence + "</td>";
-        msg += "<td class='num'>" + results[i].SAtaack + "</td>";
-        msg += "<td class='num'>" + results[i].Defence + "</td>";
-        msg += "<td class='num'>" + results[i].Speed + "</td>";
-        msg += "<td class='num'>" + results[i].Number + "</td>";
-        msg += "<td class='num'>" + results[i].Hit Point + "</td>";
-        msg += "</tr>";
-      }
-      // テーブルのテイラを生成
-      msg += "</table>";
-      $("#message").html(msg);
-    }
+            // テーブルのヘッダを生成
+            let msg = "<table><tr><th>Number</th><th>name</th><th>Attack</th><th>SDfence</th><th>Hit Point</th><th>SAtaack</th><th>Defence</th><th>Speed</th></tr>";
+            for (let i = 0; i < results.length; i++) {
+                msg += "<tr>";
+                msg += "<td>" + results[i].name + "</td>";
+                msg += "<td class='num'>" + results[i].Attack + "</td>";
+                msg += "<td class='num'>" + results[i].SDefence + "</td>";
+                msg += "<td class='num'>" + results[i].SAtaack + "</td>";
+                msg += "<td class='num'>" + results[i].Defence + "</td>";
+                msg += "<td class='num'>" + results[i].Speed + "</td>";
+                msg += "<td class='num'>" + results[i].Number + "</td>";
+                msg += "<td class='num'>" + results[i].HitPoint + "</td>";
+                msg += "</tr>";
+                }
+                // テーブルのテイラを生成
+                msg += "</table>";
+                $("#message").html(msg);
+        }
+        function btnn(){
+            let name=$("#name").val();
+            let TestDataClass = ncmb.DataStore(db);TestDataClass.equalTo("name", name).fetchAll()
+            .then(function(results){
+                showResults(results);
+                })
+        }
+        function btnN(){
+            let level=parseInt($("#level").val());
+            let TestDataClass = ncmb.DataStore(db);TestDataClass.equalTo("Number", Number).fetchAll()
+            .then(function(results){
+                showResults(results);
+                })
+        }
 
     </script>
 </head>
@@ -56,7 +69,7 @@
         <button onclick ="btnE" class="btn" >Speed</button>
         <button onclick ="btnN" class="btn" >Number</button>
         <button onclick ="btnn" class="btn" >Name</button>
-        <button onclick ="btnQ" class="btn" >FetchAll</button>
+        <button onclick ="fetchall" class="btn" >FetchAll</button>
     </div>
     <div id="message">That poke'mon is‥‥‥</div>
 
