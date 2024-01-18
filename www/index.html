@@ -72,6 +72,22 @@
                  showResults(results);
               })
         }
+        function btnD(){
+            let Attack=parseInt($("#SAttack").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.order("SAttack", true).fetchAll()
+             .then(function(results){
+                 showResults(results);
+              })
+        }
+        function btnE(){
+            let Attack=parseInt($("#Speed").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.order("Speed", true).fetchAll()
+             .then(function(results){
+                 showResults(results);
+              })
+        }
 
     </script>
 </head>
@@ -81,9 +97,9 @@
         <button class="btn" onclick ="btnA()" >Attack</button>
         <button onclick ="btnB()" class="btn" >SDefence</button>
         <button onclick ="btnF" class="btn" >Hit point</button>
-        <button onclick ="btnD" class="btn" >SAttack</button>
+        <button onclick ="btnD()" class="btn" >SAttack</button>
         <button onclick ="btnC()" class="btn" >Defence</button>
-        <button onclick ="btnE" class="btn" >Speed</button>
+        <button onclick ="btnE()" class="btn" >Speed</button>
         <button class="btn" onclick ="Number()">Number</button>
         <button class="btn" onclick ="fetchAll()">FetchAll</button>
     </div>
